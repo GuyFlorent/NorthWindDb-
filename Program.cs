@@ -33,14 +33,18 @@ namespace NorthWindDb
              }*/
 
             Donnee d = new Donnee();
-            SqlDataReader reader = d.Procedure("BLONP");
+            /*SqlDataReader reader = d.Procedure("BLONP");
 
             while (reader.Read())
             {
                 Console.WriteLine(reader.GetString(reader.GetOrdinal("ProductName")) + " " + reader.GetInt32(reader.GetOrdinal("Total")));
 
-                Console.ReadKey();
+               
             }
+            //Console.ReadKey();*/
+
+
+            d.INSERTCustomurs("AAAAA","DORANCO", "GUY");
         }
     }
 }

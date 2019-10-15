@@ -60,6 +60,21 @@ namespace NorthWindDb
             return reader1;
             this.deconnecter();
 
+        }
+
+        public void INSERTCustomurs(string CustomerID,String CompanyName, String ContactName)
+        {
+            this.connecter();
+            cmd.Connection = conn;
+            cmd.CommandText = "INSERT INTO Customers (CustomerID,CompanyName,ContactName) VALUES (@CustomerID,@CompanyName,@ContactName)";
+            
+            cmd.Parameters.AddWithValue("@CompanyName", CompanyName);
+            cmd.Parameters.AddWithValue("@ContactName", ContactName);
+            cmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+            cmd.ExecuteNonQuery();
+            
+            this.deconnecter();
+
 
         }
     }
