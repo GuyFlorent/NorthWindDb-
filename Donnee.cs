@@ -48,5 +48,19 @@ namespace NorthWindDb
 
             
         }
+
+        public SqlDataReader Procedure(String A)
+        {
+            this.connecter();
+            cmd.Connection = conn;
+            cmd.CommandText = "CustOrderHist";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@CustomerID", A);
+            SqlDataReader reader1 = cmd.ExecuteReader();
+            return reader1;
+            this.deconnecter();
+
+
+        }
     }
 }

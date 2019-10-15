@@ -24,15 +24,23 @@ namespace NorthWindDb
                 Console.WriteLine(reader.GetString(reader.GetOrdinal("Country")));
             }*/
 
+            /* Donnee d = new Donnee();
+             SqlDataReader reader = d.remplir("Customers", "France");
+
+             while (reader.Read())
+             {
+                 Console.WriteLine(reader.GetString(reader.GetOrdinal("ContactName"))+" " + reader.GetString(reader.GetOrdinal("ContactName")));
+             }*/
+
             Donnee d = new Donnee();
-            SqlDataReader reader = d.remplir("Customers", "France");
+            SqlDataReader reader = d.Procedure("BLONP");
 
             while (reader.Read())
             {
-                Console.WriteLine(reader.GetString(reader.GetOrdinal("ContactName")));
-            }
+                Console.WriteLine(reader.GetString(reader.GetOrdinal("ProductName")) + " " + reader.GetInt32(reader.GetOrdinal("Total")));
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
         }
     }
 }
