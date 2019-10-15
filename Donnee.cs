@@ -77,5 +77,80 @@ namespace NorthWindDb
 
 
         }
+
+
+
+        public void GetCustomrByID(string table, string ID)
+        {
+            this.connecter();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT * FROM " + table + " WHERE CustomerID = @CustomerID";
+
+            cmd.Parameters.AddWithValue("@CustomerID", ID);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Console.WriteLine(reader.GetString(reader.GetOrdinal("CustomerID")) + " " + reader.GetString(reader.GetOrdinal("ContactName")) + " " +
+                  reader.GetString(reader.GetOrdinal("ContactName")) + " " + reader.GetString(reader.GetOrdinal("ContactTitle")) + " " + reader.GetString(reader.GetOrdinal("Address")));
+
+
+            }
+            this.deconnecter();
+
+
+        }
+
+        public void GetCustomerByCountry(string table, string Country)
+        {
+            this.connecter();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT * FROM " + table + " WHERE Country = @Country";
+
+            cmd.Parameters.AddWithValue("@Country", Country);
+            SqlDataReader reader = cmd.ExecuteReader();
+            int i = 1;
+            while (reader.Read())
+            {
+                Console.WriteLine(i+" "+reader.GetString(reader.GetOrdinal("CustomerID")) + " " + reader.GetString(reader.GetOrdinal("ContactName")) + " " +
+                  reader.GetString(reader.GetOrdinal("ContactName")) + " " + reader.GetString(reader.GetOrdinal("ContactTitle")) + " " + reader.GetString(reader.GetOrdinal("Address")));
+
+                i++;
+            }
+            this.deconnecter();
+
+
+        }
+
+        public void UpdateCity(string newCity, string CustomerID)
+        {
+            this.connecter();
+            cmd.Connection = conn;
+            cmd.CommandText = "UPDATE Customers SET City = @City WHERE CustomerId = @CustomerId";
+
+            cmd.Parameters.AddWithValue("@City", newCity);
+            cmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+            cmd.ExecuteNonQuery();
+
+            this.deconnecter();
+
+
+        }
+
+        public void DeleteCustomerByName(string name)
+        {
+            this.connecter();
+            cmd.Connection = conn;
+            cmd.CommandText = "DELETE FROM Customers WHERE ContactName = @ContactName";
+
+            
+            cmd.Parameters.AddWithValue("@ContactName", name);
+            cmd.ExecuteNonQuery();
+
+            this.deconnecter();
+
+
+        }
+
+
     }
 }

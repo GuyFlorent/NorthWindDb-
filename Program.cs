@@ -44,7 +44,12 @@ namespace NorthWindDb
             //Console.ReadKey();*/
 
 
-            d.INSERTCustomurs("AAAAA","DORANCO", "GUY");
+            // d.INSERTCustomurs("AAAAA","DORANCO", "GUY");
+
+
+            d.GetCustomerByCountry("Customers", "USA");
+
+            
         }
     }
 }
