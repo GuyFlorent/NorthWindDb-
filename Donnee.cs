@@ -100,9 +100,12 @@ namespace NorthWindDb
 
         }
 
-        public void GetCustomerByCountry(string table, string Country)
+        public List<Customers> GetCustomerByCountry(string table, string Country)
         {
             this.connecter();
+            
+            List<Customers> liste = new List<Customers>();
+
             cmd.Connection = conn;
             cmd.CommandText = "SELECT * FROM " + table + " WHERE Country = @Country";
 
@@ -111,11 +114,15 @@ namespace NorthWindDb
             int i = 1;
             while (reader.Read())
             {
-                Console.WriteLine(i+" "+reader.GetString(reader.GetOrdinal("CustomerID")) + " " + reader.GetString(reader.GetOrdinal("ContactName")) + " " +
-                  reader.GetString(reader.GetOrdinal("ContactName")) + " " + reader.GetString(reader.GetOrdinal("ContactTitle")) + " " + reader.GetString(reader.GetOrdinal("Address")));
-
+                Customers customer = new Customers();
+                customer.CustomerID = reader.GetString(reader.GetOrdinal("CustomerID"));
+                customer.ContactTitle = reader.GetString(reader.GetOrdinal("ContactTitle"));
+                customer.ContactName = reader.GetString(reader.GetOrdinal("ContactName"));
+                Console.WriteLine(i+" "+ customer.CustomerID + " " + customer.ContactTitle +
+                  " " + customer.ContactName);
+                liste.Add(customer);
                 i++;
-            }
+            } return liste;
             this.deconnecter();
 
 
