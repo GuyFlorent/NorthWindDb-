@@ -118,8 +118,9 @@ namespace NorthWindDb
                 customer.CustomerID = reader.GetString(reader.GetOrdinal("CustomerID"));
                 customer.ContactTitle = reader.GetString(reader.GetOrdinal("ContactTitle"));
                 customer.ContactName = reader.GetString(reader.GetOrdinal("ContactName"));
-                Console.WriteLine(i+" "+ customer.CustomerID + " " + customer.ContactTitle +
-                  " " + customer.ContactName);
+               /* Console.WriteLine(i+" "+ customer.CustomerID + " " + customer.ContactTitle +
+                  " " + customer.ContactName);*/
+
                 liste.Add(customer);
                 i++;
             } return liste;

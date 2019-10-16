@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,9 +48,15 @@ namespace NorthWindDb
             // d.INSERTCustomurs("AAAAA","DORANCO", "GUY");
 
 
-            d.GetCustomerByCountry("Customers", "USA");
-
-            
+            List<Customers> cust = d.GetCustomerByCountry("Customers", "USA");
+            var liste = cust;
+            //lorsque tu mets f.cpntactName c'est que tu veux mettre ordre juste sur le nom
+            var ordreDESC = liste.OrderByDescending(f => f.ContactName);
+            foreach (var n in ordreDESC)
+            {
+                //on peut tout afficher
+                Console.WriteLine(n.ContactName+" "+n.Address);
+            }
         }
     }
 }
